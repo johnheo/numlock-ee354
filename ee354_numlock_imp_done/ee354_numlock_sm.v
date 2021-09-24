@@ -70,13 +70,13 @@ module ee354_numlock_sm(clk, reset, U, Z,
 			case(state)
 				QI:
 					if(U==1 && Z==0)
-						state<=QG1get;
-				QG1get:
+						state<=QG1GET;
+				QG1GET:
 					if(U==0)
 						state<=QG1;
 				QG1:
 					if(U==0 && Z==1)
-						state<=QG1get;
+						state<=QG10get;
 					else if(U==1)
 						state<=QBad;
 				QG10get:
@@ -89,8 +89,15 @@ module ee354_numlock_sm(clk, reset, U, Z,
 						state<=QBad;
 				QG101get:
 					if(U==0)
-						state<=QG1011;
-					
+						state<=QG101;
+				QG101:
+				   if(U==1 && Z==0)
+						state<=QG1011get;
+					else if(Z==1)
+						state<=QBad;
+				QG1011get:
+				    if(U==0)
+				        state<=QG1011;
 				QG1011:
 					state<=QOpening;
 				QOpening:

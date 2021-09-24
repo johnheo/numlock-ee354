@@ -19,8 +19,9 @@ module ee354_numlock_top (
 // TODO: Add below the buttons and Switches needed in this design
 		// BtnL, BtnU, BtnD, BtnR,            // the Left, Up, Down, and the Right buttons
 		BtnL,BtnR,
-		BtnC,             // the center button (this is our reset in most of our designs)
+	    BtnC,                             // the center button (this is our reset in most of our designs)
 		// Sw7, Sw6, Sw5, Sw4, Sw3, Sw2, Sw1, Sw0, // 8 switches
+		Sw3, Sw2, Sw1, Sw0,
 		// Sw15, Sw14, Sw13, Sw12, Sw11, Sw10, Sw9, Sw8, Sw7, Sw6, Sw5, Sw4, Sw3, Sw2, Sw1, Sw0, // 16  switches
 
 		// Ld15, Ld14, Ld13, Ld12, Ld11, Ld10, Ld9, Ld8, // unused 8 LEDs
@@ -37,7 +38,7 @@ module ee354_numlock_top (
 // TODO: DEFINE THE INPUTS (buttons and switches) you need for this project
 // make sure to add those to the ee354_numlock_top PORT list also!
 	// Project Specific Inputs
-	input		BtnL,BtnR;
+	input		BtnL,BtnR, BtnC,Sw3, Sw2, Sw1, Sw0;
 
 
 
@@ -137,12 +138,12 @@ module ee354_numlock_top (
 //
 	ee354_numlock_sm SM1(.clk(sys_clk), .reset(reset),
 								.q_I(q_I),
-								.q_G1get(q_G1get),.q_G1(g_G1),
-								.q_G10get(q_G10get),.q_10(q_G10),
-								.q_G101get(q_G101get),.q_10(q_G101),
-								.q_G1011get(q_G1011get),.q_1011(q_1011),
+								.q_G1get(q_G1get),.q_G1(q_G1),
+								.q_G10get(q_G10get),.q_G10(q_G10),
+								.q_G101get(q_G101get),.q_G101(q_G101),
+								.q_G1011get(q_G1011get),.q_G1011(q_G1011),
 								.q_Opening(q_Opening),.q_Bad(q_Bad),
-								.U(U), .Z(Z)
+								.U(U), .Z(Z),
 								.Unlock(Unlock)
 
 								);
@@ -240,7 +241,7 @@ module ee354_numlock_top (
 // SSD (Seven Segment Display)
 
 // TODO: finish the assignment for SSD3, SSD2, SSD1	Consider using the concatenation operator
-	assign SSD3 = {1'b0, q_Bad, a_Opening, q_G1011};
+	assign SSD3 = {1'b0, q_Bad, q_Opening, q_G1011};
 	assign SSD2 = {q_G1011, q_G1011get, q_G101, q_G101get}   ;
 	assign SSD1 = {q_G10, q_G1, q_G1get, q_I};
 	assign SSD0 = state_num;
