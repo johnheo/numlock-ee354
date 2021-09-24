@@ -19,7 +19,7 @@ module ee354_numlock_top (
 // TODO: Add below the buttons and Switches needed in this design
 		// BtnL, BtnU, BtnD, BtnR,            // the Left, Up, Down, and the Right buttons
 		BtnL,BtnR,
-		 BtnC                             // the center button (this is our reset in most of our designs)
+		BtnC,             // the center button (this is our reset in most of our designs)
 		// Sw7, Sw6, Sw5, Sw4, Sw3, Sw2, Sw1, Sw0, // 8 switches
 		// Sw15, Sw14, Sw13, Sw12, Sw11, Sw10, Sw9, Sw8, Sw7, Sw6, Sw5, Sw4, Sw3, Sw2, Sw1, Sw0, // 16  switches
 
